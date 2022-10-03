@@ -32,7 +32,7 @@ tags:
 #### 3.实验步骤
 步骤1：在PC 机上运行Wireshark，开始截获报文； 
 
-步骤2：从浏览器上访问Web 界面，如http://csee.hnu.edu.cn打开网页，待浏览器的状态栏出现 “完毕”信息后关闭网页。 
+步骤2：从浏览器上访问Web 界面，如 http://csee.hnu.edu.cn 打开网页，待浏览器的状态栏出现“完毕”信息后关闭网页。 
 
 步骤3：停止截获报文，将截获的报文命名为http-学号保存。
 
@@ -117,71 +117,86 @@ Wireshark（前称Ethereal）是一个网络封包分析软件。网络封包分
 
 表1.1 HTTP 请求报文格式
 
-<table border=0 cellpadding=0 cellspacing=0 width=256 style='border-collapse:
- collapse;table-layout:fixed;width:192pt'>
- <col width=64 span=4 style='width:48pt'>
+<table border=0 cellpadding=0 cellspacing=0 width=640 style='border-collapse:
+ collapse;table-layout:fixed;width:480pt'>
+ <col width=64 span=10 style='width:48pt'>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl65 width=64 style='height:15.0pt;width:48pt'>方 法</td>
   <td class=xl66 width=64 style='width:48pt'><span lang=EN-US>GET</span></td>
   <td class=xl66 width=64 style='width:48pt'>版 本</td>
-  <td class=xl66 width=64 style='width:48pt'><span lang=EN-US>http/1.1</span></td>
+  <td colspan=7 class=xl68 width=448 style='border-right:1.0pt solid black;
+  border-left:none;width:336pt'><span lang=EN-US>http/1.1</span></td>
  </tr>
  <tr height=38 style='mso-height-source:userset;height:28.8pt'>
   <td height=38 class=xl67 width=64 style='height:28.8pt;width:48pt'><span
   lang=EN-US>URL</span></td>
-  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
-  border-left:none;width:144pt'><span lang=EN-US>http://csee.hnu.edu.cn/js/bdtxk.js</span></td>
+  <td colspan=9 class=xl68 width=576 style='border-right:1.0pt solid black;
+  border-left:none;width:432pt'><span lang=EN-US>http://csee.hnu.edu.cn/js/bdtxk.js</span></td>
  </tr>
  <tr height=39 style='height:29.4pt'>
   <td height=39 class=xl67 width=64 style='height:29.4pt;width:48pt'>首部字段名</td>
-  <td class=xl68 width=64 style='width:48pt'>字段值</td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>字段所表达的信息</td>
+  <td colspan=4 class=xl70 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>字段值</td>
+  <td colspan=5 class=xl68 width=320 style='border-right:1.0pt solid black;
+  border-left:none;width:240pt'>字段所表达的信息</td>
  </tr>
- <tr height=39 style='height:29.4pt'>
+ <tr height=39 style='mso-height-source:userset;height:29.4pt'>
   <td height=39 class=xl67 width=64 style='height:29.4pt;width:48pt'><span
   lang=EN-US>Host</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>csee.hnu.edu.cn</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>指明对象所在的主机</td>
+  <td colspan=4 class=xl72 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'><span lang=EN-US>csee.hnu.edu.cn</span></td>
+  <td colspan=5 class=xl68 width=320 style='border-right:1.0pt solid black;
+  border-left:none;width:240pt'>指明对象所在的主机</td>
  </tr>
- <tr height=39 style='height:29.4pt'>
+ <tr height=39 style='mso-height-source:userset;height:29.4pt'>
   <td height=39 class=xl67 width=64 style='height:29.4pt;width:48pt'><span
   lang=EN-US>Connection</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>keep-alive</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>要求服务器采用持续连接</td>
+  <td colspan=4 class=xl72 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'><span lang=EN-US>keep-alive</span></td>
+  <td colspan=5 class=xl68 width=320 style='border-right:1.0pt solid black;
+  border-left:none;width:240pt'>要求服务器采用持续连接</td>
  </tr>
- <tr height=231 style='height:173.4pt'>
-  <td height=231 class=xl67 width=64 style='height:173.4pt;width:48pt'><span
+ <tr height=80 style='mso-height-source:userset;height:60.0pt'>
+  <td height=80 class=xl67 width=64 style='height:60.0pt;width:48pt'><span
   lang=EN-US>User-Agent</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 Edg/105.0.1343.53</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>指明用户发送请求的浏览器的类型</td>
+  <td colspan=4 class=xl72 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'><span lang=EN-US>Mozilla/5.0 (Windows NT 10.0;
+  Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0</span></td>
+  <td colspan=5 class=xl68 width=320 style='border-right:1.0pt solid black;
+  border-left:none;width:240pt'>指明用户发送请求的浏览器的类型</td>
  </tr>
  <tr height=58 style='mso-height-source:userset;height:43.2pt'>
   <td height=58 class=xl67 width=64 style='height:43.2pt;width:48pt'><span
   lang=EN-US>Accept</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>*/*</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>表示接受的响应body可以是任何类型</td>
+  <td colspan=4 class=xl72 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'><span lang=EN-US>*/*</span></td>
+  <td colspan=5 class=xl68 width=320 style='border-right:1.0pt solid black;
+  border-left:none;width:240pt'>表示接受的响应body可以是任何类型</td>
  </tr>
  <tr height=58 style='mso-height-source:userset;height:43.2pt'>
   <td height=58 class=xl67 width=64 style='height:43.2pt;width:48pt'><span
   lang=EN-US>Accept-Encoding</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>gzip, deflate</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>表示这个请求的内容希望被压缩,减少网络流量</td>
+  <td colspan=4 class=xl72 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'><span lang=EN-US>gzip, deflate</span></td>
+  <td colspan=5 class=xl68 width=320 style='border-right:1.0pt solid black;
+  border-left:none;width:240pt'>表示这个请求的内容希望被压缩,减少网络流量</td>
  </tr>
- <tr height=135 style='height:101.4pt'>
-  <td height=135 class=xl67 width=64 style='height:101.4pt;width:48pt'><span
+ <tr height=66 style='mso-height-source:userset;height:49.95pt'>
+  <td height=66 class=xl67 width=64 style='height:49.95pt;width:48pt'><span
   lang=EN-US>Accept-Language</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>浏览器支持以上语言，使用的优先级以q的值从大到小递减</td>
+  <td colspan=4 class=xl72 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'><span lang=EN-US>zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6</span></td>
+  <td colspan=5 class=xl68 width=320 style='border-right:1.0pt solid black;
+  border-left:none;width:240pt'>浏览器支持以上语言，使用的优先级以q的值从大到小递减</td>
  </tr>
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
   <td width=64 style='width:48pt'></td>
   <td width=64 style='width:48pt'></td>
   <td width=64 style='width:48pt'></td>
@@ -194,144 +209,162 @@ Wireshark（前称Ethereal）是一个网络封包分析软件。网络封包分
 
 表2.2 HTTP 应答报文格式
 
-<table border=0 cellpadding=0 cellspacing=0 width=256 style='border-collapse:
- collapse;table-layout:fixed;width:192pt'>
- <col width=64 span=4 style='width:48pt'>
+<table border=0 cellpadding=0 cellspacing=0 width=512 style='border-collapse:
+ collapse;table-layout:fixed;width:384pt'>
+ <col width=64 span=8 style='width:48pt'>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl65 width=64 style='height:15.0pt;width:48pt'>版 本</td>
   <td class=xl66 width=64 style='width:48pt'><span lang=EN-US>http/1.0</span></td>
   <td class=xl66 width=64 style='width:48pt'>状态码</td>
-  <td class=xl66 width=64 style='width:48pt'><span lang=EN-US>304</span></td>
+  <td colspan=5 class=xl71 width=320 style='border-left:none;width:240pt'><span
+  lang=EN-US>304</span></td>
  </tr>
- <tr height=20 style='height:15.0pt'>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
   <td height=20 class=xl67 width=64 style='height:15.0pt;width:48pt'>短 语</td>
-  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
-  border-left:none;width:144pt'><span lang=EN-US>Not Modified</span></td>
+  <td colspan=7 class=xl72 width=448 style='border-left:none;width:336pt'><span
+  lang=EN-US>Not Modified</span></td>
  </tr>
  <tr height=39 style='height:29.4pt'>
   <td height=39 class=xl67 width=64 style='height:29.4pt;width:48pt'>首部字段名</td>
-  <td class=xl68 width=64 style='width:48pt'>字段值</td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>字段所表达的信息</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'>字段值</td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>字段所表达的信息</td>
  </tr>
- <tr height=78 style='height:58.2pt'>
+ <tr height=78 style='mso-height-source:userset;height:58.2pt'>
   <td height=78 class=xl67 width=64 style='height:58.2pt;width:48pt'><span
   lang=EN-US>Date</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>Mon, 03 Oct 2022
-  16:28:07 GMT</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>服务器产生并发送该响应报文的时间</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>Mon, 03 Oct 2022 16:28:07 GMT</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>服务器产生并发送该响应报文的时间</td>
  </tr>
- <tr height=39 style='height:29.4pt'>
+ <tr height=39 style='mso-height-source:userset;height:29.4pt'>
   <td height=39 class=xl67 width=64 style='height:29.4pt;width:48pt'><span
   lang=EN-US>Server</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>*********</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'><span lang=EN-US>web服务器软件名称</span></td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>*********</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>web服务器软件名称</td>
  </tr>
  <tr height=58 style='mso-height-source:userset;height:43.2pt'>
   <td height=58 class=xl67 width=64 style='height:43.2pt;width:48pt'><span
   lang=EN-US>X-Frame-Options</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>SAMEORIGIN</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>表示该页面可以在相同域名页面的 frame 中展示</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>SAMEORIGIN</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>表示该页面可以在相同域名页面的 frame 中展示</td>
  </tr>
  <tr height=77 style='mso-height-source:userset;height:57.6pt'>
   <td height=77 class=xl67 width=64 style='height:57.6pt;width:48pt'><span
   lang=EN-US>Accept-Ranges</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>bytes</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>表明服务器是否支持指定范围请求及哪种类型的分段请求</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>bytes</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>表明服务器是否支持指定范围请求及哪种类型的分段请求</td>
  </tr>
  <tr height=58 style='mso-height-source:userset;height:43.2pt'>
   <td height=58 class=xl67 width=64 style='height:43.2pt;width:48pt'><span
   lang=EN-US>Cache-Control</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>max-age=3600</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>告诉所有的缓存机制是否可以缓存及哪种类型</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>max-age=3600</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>告诉所有的缓存机制是否可以缓存及哪种类型</td>
  </tr>
- <tr height=78 style='height:58.2pt'>
+ <tr height=78 style='mso-height-source:userset;height:58.2pt'>
   <td height=78 class=xl67 width=64 style='height:58.2pt;width:48pt'><span
   lang=EN-US>ETag</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>&quot;4fc5-5672ebfe27840-gzip&quot;</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>请求变量的实体标签的当前值</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>&quot;4fc5-5672ebfe27840-gzip&quot;</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>请求变量的实体标签的当前值</td>
  </tr>
  <tr height=58 style='mso-height-source:userset;height:43.2pt'>
   <td height=58 class=xl67 width=64 style='height:43.2pt;width:48pt'><span
   lang=EN-US>Vary</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>Accept-Encoding</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>告诉代理服务器缓存两种版本的资源：压缩和非压缩</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>Accept-Encoding</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>告诉代理服务器缓存两种版本的资源：压缩和非压缩</td>
  </tr>
  <tr height=58 style='mso-height-source:userset;height:43.2pt'>
   <td height=58 class=xl67 width=64 style='height:43.2pt;width:48pt'><span
   lang=EN-US>Content-Encoding</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>gzip</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'><span lang=EN-US>web服务器支持的返回内容压缩编码类型</span></td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>gzip</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>web服务器支持的返回内容压缩编码类型</td>
  </tr>
  <tr height=39 style='height:29.4pt'>
   <td height=39 class=xl67 width=64 style='height:29.4pt;width:48pt'><span
   lang=EN-US>Content-Length</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>5163</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>响应body长度</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>5163</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>响应body长度</td>
  </tr>
- <tr height=58 style='height:43.8pt'>
+ <tr height=58 style='mso-height-source:userset;height:43.8pt'>
   <td height=58 class=xl67 width=64 style='height:43.8pt;width:48pt'><span
   lang=EN-US>Content-Type</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>application/javascript</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>内容的类型，这里为javascript</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>application/javascript</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>内容的类型，这里为javascript</td>
  </tr>
- <tr height=39 style='height:29.4pt'>
+ <tr height=39 style='mso-height-source:userset;height:29.4pt'>
   <td height=39 class=xl67 width=64 style='height:29.4pt;width:48pt'><span
   lang=EN-US>Content-Language</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>zh-CN</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>响应内容的语言，这里为简中</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>zh-CN</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>响应内容的语言，这里为简中</td>
  </tr>
- <tr height=39 style='height:29.4pt'>
+ <tr height=39 style='mso-height-source:userset;height:29.4pt'>
   <td height=39 class=xl67 width=64 style='height:29.4pt;width:48pt'><span
   lang=EN-US>Expires</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>01:39:51 GMT</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>响应过期的日期和时间</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>01:39:51 GMT</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>响应过期的日期和时间</td>
  </tr>
- <tr height=78 style='height:58.2pt'>
+ <tr height=78 style='mso-height-source:userset;height:58.2pt'>
   <td height=78 class=xl67 width=64 style='height:58.2pt;width:48pt'><span
   lang=EN-US>Last-Modified</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>Mon, 12 Mar 2018
-  03:29:29 GMT</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>请求资源的最后修改时间</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>Mon, 12 Mar 2018 03:29:29 GMT</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>请求资源的最后修改时间</td>
  </tr>
  <tr height=58 style='mso-height-source:userset;height:43.2pt'>
   <td height=58 class=xl67 width=64 style='height:43.2pt;width:48pt'><span
   lang=EN-US>Age</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>1867</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>从原始服务器到代理缓存形成的估算时间</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>1867</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>从原始服务器到代理缓存形成的估算时间</td>
  </tr>
- <tr height=78 style='height:58.2pt'>
+ <tr height=78 style='mso-height-source:userset;height:58.2pt'>
   <td height=78 class=xl67 width=64 style='height:58.2pt;width:48pt'><span
   lang=EN-US>X-Cache</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>HIT from
-  Hnu-Chinanet-Proxy</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>请求资源在哪个代理服务器找到</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>HIT from Hnu-Chinanet-Proxy</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>请求资源在哪个代理服务器找到</td>
  </tr>
- <tr height=78 style='height:58.2pt'>
+ <tr height=78 style='mso-height-source:userset;height:58.2pt'>
   <td height=78 class=xl67 width=64 style='height:58.2pt;width:48pt'><span
   lang=EN-US>Via</span></td>
-  <td class=xl68 width=64 style='width:48pt'><span lang=EN-US>1.0
-  Hnu-Chinanet-Proxy (squid)</span></td>
-  <td colspan=2 class=xl69 width=128 style='border-right:1.0pt solid black;
-  border-left:none;width:96pt'>告知代理客户端响应是通过哪里发送的</td>
+  <td colspan=3 class=xl69 width=192 style='border-right:1.0pt solid black;
+  border-left:none;width:144pt'><span lang=EN-US>1.0 Hnu-Chinanet-Proxy (squid)</span></td>
+  <td colspan=4 class=xl69 width=256 style='border-right:1.0pt solid black;
+  border-left:none;width:192pt'>告知代理客户端响应是通过哪里发送的</td>
  </tr>
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
   <td width=64 style='width:48pt'></td>
   <td width=64 style='width:48pt'></td>
   <td width=64 style='width:48pt'></td>
