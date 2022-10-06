@@ -217,12 +217,12 @@ Wireshark（前称Ethereal）是一个网络封包分析软件。网络封包分
   <td class=xl66 width=64 style='width:48pt'><span lang=EN-US>http/1.0</span></td>
   <td class=xl66 width=64 style='width:48pt'>状态码</td>
   <td colspan=5 class=xl71 width=320 style='border-left:none;width:240pt'><span
-  lang=EN-US>304</span></td>
+  lang=EN-US>200</span></td>
  </tr>
  <tr height=20 style='mso-height-source:userset;height:15.0pt'>
   <td height=20 class=xl67 width=64 style='height:15.0pt;width:48pt'>短 语</td>
   <td colspan=7 class=xl72 width=448 style='border-left:none;width:336pt'><span
-  lang=EN-US>Not Modified</span></td>
+  lang=EN-US>OK</span></td>
  </tr>
  <tr height=39 style='height:29.4pt'>
   <td height=39 class=xl67 width=64 style='height:29.4pt;width:48pt'>首部字段名</td>
