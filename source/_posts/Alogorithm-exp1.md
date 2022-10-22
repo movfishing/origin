@@ -1,7 +1,8 @@
 ---
-title: Alogorithm exp1
+title: HNU Alogorithm exp1
 date: 2022-10-21 19:33:47
-tags:
+tags: experiments
+categories: Algorithm 
 ---
 
 # 经典案例
@@ -493,3 +494,9 @@ printf("操作成功！\n");
 * 时间复杂度分析：
 
     对于一个规模为n * m的矩阵输入，进行了一次行遍历，然后在同一行的情况下对两个矩阵进行列遍历，采用了三层循环，时间复杂度为O(n * m^2).
+
+---
+
+本次实验完整代码(包含文件读写)已上传至[Github](https://github.com/movfishing/HNU-Algorithm/tree/main/Exp1)，欢迎借鉴，~~虽然写得很丑~~
+
+---
