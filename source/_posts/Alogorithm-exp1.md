@@ -268,7 +268,8 @@ int cnm(int n, int m)
     int sum = 1;
     for (int i = 0; i < m; i++)
     {
-        sum *= (n - i) / (i + 1);
+        sum = sum * (n - i);
+        sum = sum / (i + 1);
     }
     return sum;
 }
