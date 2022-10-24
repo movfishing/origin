@@ -5,6 +5,12 @@ tags: experiments
 categories: Algorithm 
 ---
 
+---
+
+本次实验完整代码(包含文件读写)已上传至[Github](https://github.com/movfishing/HNU-Algorithm/tree/main/Exp1)，欢迎借鉴，~~虽然写得很丑~~
+
+---
+
 # 经典案例
 
 ### 分治法查找最大最小值
@@ -78,6 +84,10 @@ while (num--)
 }
 printf("操作成功！\n");
 ```
+
+* 简单用例的测试结果：
+
+    ![](/img/algorithmexp1/Ans1.png)
 
 * 不同规模测试用例下的时间统计：
 
@@ -214,6 +224,10 @@ while (num--)
 printf("操作成功！\n");
 ```
 
+* 简单用例的测试结果：
+
+    ![](/img/algorithmexp1/Ans2.png)
+
 * 不同规模测试用例下的时间统计：
 
     图中横坐标为数组长度，纵坐标为时间消耗，均测试1000组数据，可以看到是一条斜率缓缓增大的曲线。
@@ -333,6 +347,10 @@ while (num--)
 printf("操作成功！\n");
 break;
 ```
+
+* 简单用例的测试结果：
+
+    ![](/img/algorithmexp1/Ans3.png)
 
 * 不同规模测试用例下的时间统计：
 
@@ -486,6 +504,10 @@ while (num--)
 printf("操作成功！\n");
 ```
 
+* 简单用例的测试结果：
+
+    ![](/img/algorithmexp1/Ans4.png)
+
 * 不同规模测试用例下的时间统计：
 
     表中横坐标为矩阵规模(n*n)，纵坐标为时间消耗，均测试1000组数据，可以看出其为一个指数型曲线。
@@ -495,9 +517,3 @@ printf("操作成功！\n");
 * 时间复杂度分析：
 
     对于一个规模为n * m的矩阵输入，进行了一次行遍历，然后在同一行的情况下对两个矩阵进行列遍历，采用了三层循环，时间复杂度为O(n * m^2).
-
----
-
-本次实验完整代码(包含文件读写)已上传至[Github](https://github.com/movfishing/HNU-Algorithm/tree/main/Exp1)，欢迎借鉴，~~虽然写得很丑~~
-
----
