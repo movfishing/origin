@@ -1,7 +1,8 @@
 ---
 title: HNU database system exp1
 date: 2022-10-16 15:09:24
-tags:
+tags: experiments
+categories: Database System
 ---
 # **数据库定义与操作语言实验**
 
