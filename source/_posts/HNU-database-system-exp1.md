@@ -1,5 +1,5 @@
 ---
-title: HNU database system exp1(未完成)
+title: HNU database system exp1
 date: 2022-10-16 15:09:24
 tags:
 ---
@@ -123,6 +123,324 @@ MySQL安装好后，你会发现其仅提供了一个命令行工具，并没有
 
 本人选择的是在VSCode上安装插件`MySQL`以进行数据库管理。安装好插件后，在左侧边栏会出现一个`Database`的选项，点击后进入配置界面：
 
-![]()
+![](/img/databaseexp1/connect.png)
 
 填写图中*号标记的项目，其中密码是在安装MySQL时自己设置的管理密码。完成后点击连接即可。
+
+## 二、实验使用的数据库
+
+使用的教材配套的学生-课程数据库S-T，~~主要原因是用例比较少，好建~~
+
+有三个基本表：
+* 学生表：Student(Sno,Sname,Ssex,Sage,Sdept) 
+
+* 课程表：Course(Cno,Cname,Cpno,Ccredit) 
+
+* 学生选课表：SC(Sno,Cno,Grade)
+
+## 三、实验代码(按本人实际操作顺序，并未按实验编号顺序)
+
+#### 1.数据库的定义
+
+```sql
+CREATE SCHEMA ST;
+
+CREATE TABLE
+    ST.Student(
+        Sno CHAR(9) PRIMARY KEY,
+        Sname CHAR(20),
+        Ssex CHAR(2),
+        Sage SMALLINT,
+        Sdept CHAR(20)
+    );
+
+CREATE TABLE
+    ST.Course(
+        Cno CHAR(4) PRIMARY KEY,
+        Cname CHAR(40) NOT NULL,
+        Cpno CHAR(4),
+        Ccredit SMALLINT,
+        FOREIGN KEY (Cpno) REFERENCES Course(Cno)
+    );
+
+CREATE TABLE
+    ST.SC(
+        Sno CHAR(9),
+        Cno CHAR(4),
+        Grade SMALLINT,
+        PRIMARY KEY(Sno, Cno),
+        FOREIGN KEY (Sno) REFERENCES Student(Sno),
+        FOREIGN KEY (Cno) REFERENCES Course(Cno)
+    );
+```
+
+值得注意的是，在MySQL中，`schema`与`database`并没有明确的区别，在其官方文档中提到，`CREATE SCHEMA`与`CREATE DATABASE`是等效的。
+
+![](/img/databaseexp1/reminds.png)
+
+使用`CREATE SCHEMA`语句实际上也是建立了一个数据库。
+
+#### 2.数据更新
+
+```sql
+INSERT INTO Student VALUES('201215121','李勇','男','20','CS');
+
+INSERT INTO Student VALUES('201215122','刘晨','女','19','CS');
+
+INSERT INTO Student VALUES('201215123','王敏','女','18','MA');
+
+INSERT INTO Student VALUES('201215125','张立','男','19','IS');
+
+INSERT INTO Course VALUES('1','数据库',NULL,'4');
+
+INSERT INTO Course VALUES('2','数学',NULL,'2');
+
+INSERT INTO Course VALUES('3','信息系统',NULL,'4');
+
+INSERT INTO Course VALUES('4','操作系统',NULL,'3');
+
+INSERT INTO Course VALUES('5','数据结构',NULL,'4');
+
+INSERT INTO Course VALUES('6','数据处理',NULL,'2');
+
+INSERT INTO Course VALUES('7','PASCAL语言',NULL,'4');
+
+UPDATE Course SET Cpno=5 WHERE Cno='1';
+
+UPDATE Course SET Cpno=1 WHERE Cno='3';
+
+UPDATE Course SET Cpno=6 WHERE Cno='4';
+
+UPDATE Course SET Cpno=7 WHERE Cno='5';
+
+UPDATE Course SET Cpno=6 WHERE Cno='7';
+
+INSERT INTO SC VALUES('201215121','1','92');
+
+INSERT INTO SC VALUES('201215121','2','85');
+
+INSERT INTO SC VALUES('201215121','3','88');
+
+INSERT INTO SC VALUES('201215122','2','90');
+
+INSERT INTO SC VALUES('201215122','3','80');
+```
+
+在Course表建立时，由于存在Cpno参照表是自身，所以需要先建立Cpno为空值，在去修改Cpno的值。
+
+#### 3.数据查询
+
+```sql
+SELECT * FROM student;
+
+/*查询student中的所有元组*/
+
+SELECT Sname FROM Student WHERE Ssex='男';
+
+/*查询所有男生的姓名*/
+
+SELECT Cno,Sno,MAX(Grade) FROM SC GROUP BY Cno;
+
+/*查询每门课的最高成绩*/
+
+SELECT
+    FIRST.Cname,
+    SECOND.Cname
+FROM
+    Course FIRST,
+    Course SECOND
+WHERE FIRST.Cpno = SECOND.Cno;
+
+/*查询某课程以及其先修课程的名字*/
+
+SELECT Sname, Cname, Grade
+FROM Student, Course, SC
+WHERE
+    Student.Sdept = 'CS'
+    AND Student.Sno = SC.Sno
+    AND SC.Cno = Course.Cno;
+
+/*查询所有CS专业的学生的所有课程成绩*/
+
+SELECT Sno, Cno
+FROM SC x
+WHERE Grade > (
+        SELECT AVG(Grade)
+        FROM SC y
+        WHERE y.Cno = x.Cno
+    );
+
+/*查询每个学生的课程成绩比课程平均成绩高的课程*/
+
+SELECT Sname
+FROM Student
+WHERE EXISTS(
+        SELECT *
+        FROM SC
+        WHERE
+            Sno = Student.Sno
+            AND Cno = '2'
+    )
+    AND NOT EXISTS(
+        SELECT *
+        FROM SC
+        WHERE
+            Sno = Student.Sno
+            AND Cno = '1'
+    );
+
+/*查询选修了2号课程但是没有选修1号课程的学生名字*/
+
+SELECT *
+FROM Student
+WHERE Sdept = 'CS'
+EXCEPT
+SELECT *
+FROM Student
+WHERE Sage <= 19;
+
+/*查询CS专业中大于19岁的学生*/
+```
+
+#### 4.视图
+
+```sql
+CREATE VIEW CS_STUDENT AS 
+	SELECT 
+      Sno,
+      Sname,
+      Sage,
+      Sdept 
+  FROM Student 
+  WHERE Sdept = 'CS'; 
+
+/*建立CS专业学生的视图(not WITH CHECK OPTION)*/
+
+CREATE VIEW IS_STUDENT AS 
+	SELECT
+	    Sno,
+	    Sname,
+	    Sage,
+	    Sdept
+	FROM Student
+	WHERE Sdept = 'IS'
+	WITH CHECK OPTION; 
+
+/*建立IS专业学生的视图(WITH CHECK OPTION)*/
+```
+
+建立了两个视图，用于验证`WITH CHECK OPTION`的功能。
+建立好后，我们先查看CS专业的视图：
+
+![](/img/databaseexp1/view1.png)
+
+先向该视图添加一个Sdept为`CS`的元组，可以成功添加，再查看视图：
+
+![](/img/databaseexp1/view2.png)
+
+可以在视图中看到刚添加的元组。
+
+然后再添加一个Sdept为`IS`的元组，可以发现能成功添加，查看视图：
+
+![](/img/databaseexp1/view3.png)
+
+在视图中并没有发现刚刚添加的元组，但是我们可以在IS专业的视图中看到刚刚添加的元组：
+
+![](/img/databaseexp1/view4.png)
+
+再向IS专业的视图添加一个Sdept为`CS`的元素，可以发现提示我们添加失败：
+
+![](/img/databaseexp1/view5.png)
+
+然后我们到Student表中也没有看到刚刚尝试添加的元素，这就是`WITH CHECK OPTION`在起作用。
+
+```sql
+CREATE VIEW S_G(SNO, GAVG) AS 
+	SELECT Sno,AVG(Grade) FROM SC GROUP BY SNO; 
+```
+
+建立了一个不可更新的视图，因为其中有GAVG项，而此项是通过计算SC表中对应项的平均值得来的，而系统无法去更改这个计算得出的平均成绩，故该视图不可更新。我们可以尝试验证：
+
+![](/img/databaseexp1/view_update.png)
+
+很明显，当我尝试更新时，出现了报错。
+
+#### 5.索引
+
+由于本部分需要测试的数据集达到10万组以上，所以我导入使用了MySQL的示例库`employees`。
+
+可以查看employee的结构：
+
+![](/img/databaseexp1/struct.png)
+
+按emp_no升序建立唯一索引：
+
+```sql
+CREATE UNIQUE INDEX Empno ON employees(emp_no ASC);
+```
+
+使用`EXPLAIN`方法检测是否成功建立索引且有效：
+
+```sql
+EXPLAIN SELECT * FROM employees WHERE emp_no>=15000;
+```
+
+![](/img/databaseexp1/empno1.png)
+
+可以看到，表中的key项为primary，未使用索引。但是possible_keys项中有Empno，表示索引成功建立且有效。
+
+这种情况是MySQL认为全表扫描比走索引更快，就不会走索引了。
+
+但是我们可以通过force index来强制其走索引：
+
+```sql
+EXPLAIN SELECT * FROM employees force INDEX(`Empno`) WHERE emp_no>=15000;
+```
+
+![](/img/databaseexp1/empno2.png)
+
+可以看到key项变为了Empno，成功使用索引。
+
+---
+
+按birth_date的月份建立函数索引：
+
+```sql
+ALTER Table employees ADD INDEX emp_func((month(birth_date)));
+```
+
+使用`EXPLAIN`方法检测是否成功建立索引且能使用：
+
+```sql
+EXPLAIN SELECT * FROM employees WHERE month(birth_date)=4;
+```
+
+![](/img/databaseexp1/emp_func.png)
+
+可以看到，表中的key项为emp_func，即使用了emp_func索引。
+
+接下来测试使用索引与不使用索引时的时间消耗：
+
+建立的索引以及执行的查询：
+
+```sql
+ALTER Table employees ADD INDEX emp_func((month(birth_date)) ASC);
+
+SELECT * FROM employees WHERE month(birth_date)=1;
+```
+
+* 使用索引时
+
+  ![](/img/databaseexp1/with.png)
+
+* 不使用索引时
+
+  ![](/img/databaseexp1/without.png)
+
+两次测试均测试多次，时间消耗在图所示耗时上下小幅度摇动。
+
+我们可以看到，对于employees的299600条数据，使用索引约有42%的提升。
+
+
+
+
