@@ -55,7 +55,7 @@ categories: Database System
 
 本次实验和实验一的索引实验相同，使用的是MySQL官方的示例库`employees`，关于此库的导入请自行百度。
 
-另外由于MMySQL中`CREATE USER`与`CREATE ROLE`这块的语法与教材以及实验书上的示例代码的语法稍有不同，可以参考[官方文档](https://dev.mysql.com/doc/)配合食用。
+另外由于MySQL中`CREATE USER`与`CREATE ROLE`这块的语法与教材以及实验书上的示例代码的语法稍有不同，可以参考[官方文档](https://dev.mysql.com/doc/)配合食用。
 
 由于VSCode的MySQL插件更换用户登录数据库比较麻烦，所以相关操作我在cmd中进行。
 
