@@ -1,5 +1,5 @@
 ---
-title: HNU Alogorithm exp1
+title: HNU Algorithm exp1
 date: 2022-10-21 19:33:47
 tags: experiments
 categories: Algorithm 
