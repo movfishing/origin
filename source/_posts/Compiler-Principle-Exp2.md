@@ -106,37 +106,9 @@ bison的.y文件结构与flex的.l文件结构类似，分为一下部分：
 
 实验指导文档中已经给出了 C-Minus-f 的语法：
 
-1. $`\text{program} \rightarrow \text{declaration-list}`$
-2. $`\text{declaration-list} \rightarrow \text{declaration-list}\ \text{declaration}\ |\ \text{declaration}`$
-3. $`\text{declaration} \rightarrow \text{var-declaration}\ |\ \text{fun-declaration}`$
-4. $`\text{var-declaration}\ \rightarrow \text{type-specifier}\ \textbf{ID}\ \textbf{;}\ |\ \text{type-specifier}\ \textbf{ID}\ \textbf{[}\ \textbf{INTEGER}\ \textbf{]}\ \textbf{;}`$
-5. $`\text{type-specifier} \rightarrow \textbf{int}\ |\ \textbf{float}\ |\ \textbf{void}`$
-6. $`\text{fun-declaration} \rightarrow \text{type-specifier}\ \textbf{ID}\ \textbf{(}\ \text{params}\ \textbf{)}\ \text{compound-stmt}`$
-7. $`\text{params} \rightarrow \text{param-list}\ |\ \textbf{void}`$
-8. $`\text{param-list} \rightarrow \text{param-list}\ ,\ \text{param}\ |\ \text{param}`$
-9. $`\text{param} \rightarrow \text{type-specifier}\ \textbf{ID}\ |\ \text{type-specifier}\ \textbf{ID}\ \textbf{[]}`$
-10. $`\text{compound-stmt} \rightarrow \textbf{\{}\ \text{local-declarations}\ \text{statement-list} \textbf{\}}`$
-11. $`\text{local-declarations} \rightarrow \text{local-declarations var-declaration}\ |\ \text{empty}`$
-12. $`\text{statement-list} \rightarrow \text{statement-list}\ \text{statement}\ |\ \text{empty}`$
-13. $`\begin{aligned}\text{statement} \rightarrow\ &\text{expression-stmt}\\ &|\ \text{compound-stmt}\\ &|\ \text{selection-stmt}\\ &|\ \text{iteration-stmt}\\ &|\ \text{return-stmt}\end{aligned}`$
-14. $`\text{expression-stmt} \rightarrow \text{expression}\ \textbf{;}\ |\ \textbf{;}`$
-15. $`\begin{aligned}\text{selection-stmt} \rightarrow\ &\textbf{if}\ \textbf{(}\ \text{expression}\ \textbf{)}\ \text{statement}\\ &|\ \textbf{if}\ \textbf{(}\ \text{expression}\ \textbf{)}\ \text{statement}\ \textbf{else}\ \text{statement}\end{aligned}`$
-16. $`\text{iteration-stmt} \rightarrow \textbf{while}\ \textbf{(}\ \text{expression}\ \textbf{)}\ \text{statement}`$
-17. $`\text{return-stmt} \rightarrow \textbf{return}\ \textbf{;}\ |\ \textbf{return}\ \text{expression}\ \textbf{;}`$
-18. $`\text{expression} \rightarrow \text{var}\ \textbf{=}\ \text{expression}\ |\ \text{simple-expression}`$
-19. $`\text{var} \rightarrow \textbf{ID}\ |\ \textbf{ID}\ \textbf{[}\ \text{expression} \textbf{]}`$
-20. $`\text{simple-expression} \rightarrow \text{additive-expression}\ \text{relop}\ \text{additive-expression}\ |\ \text{additive-expression}`$
-21. $`\text{relop}\ \rightarrow \textbf{<=}\ |\ \textbf{<}\ |\ \textbf{>}\ |\ \textbf{>=}\ |\ \textbf{==}\ |\ \textbf{!=}`$
-22. $`\text{additive-expression} \rightarrow \text{additive-expression}\ \text{addop}\ \text{term}\ |\ \text{term}`$
-23. $`\text{addop} \rightarrow \textbf{+}\ |\ \textbf{-}`$
-24. $`\text{term} \rightarrow \text{term}\ \text{mulop}\ \text{factor}\ |\ \text{factor}`$
-25. $`\text{mulop} \rightarrow \textbf{*}\ |\ \textbf{/}`$
-26. $`\text{factor} \rightarrow \textbf{(}\ \text{expression}\ \textbf{)}\ |\ \text{var}\ |\ \text{call}\ |\ \text{integer}\ |\ \text{float}`$
-27. $`\text{integer} \rightarrow \textbf{INTEGER}`$
-28. $`\text{float} \rightarrow \textbf{FLOATPOINT}`$
-29. $`\text{call} \rightarrow \textbf{ID}\ \textbf{(}\ \text{args} \textbf{)}`$
-30. $`\text{args} \rightarrow \text{arg-list}\ |\ \text{empty}`$
-31. $`\text{arg-list} \rightarrow \text{arg-list}\ \textbf{,}\ \text{expression}\ |\ \text{expression}`$
+![](/img/CPexp2/rule1.png)
+
+![](/img/CPexp2/rule2.png)
 
 有个地方需要注意：
 
@@ -279,7 +251,7 @@ while(i!=0){
 }
 ```
 
-bison采用的是LALR()文法，可能会导致悬挂else的问题，即有多个if时，else不知道与哪个if配对。解决方法是else与其最近的if配对，我编写的测试用例主要验证了这个问题。
+bison采用的是LALR()文法，可能会导致悬挂else的问题，即有多个if时，else不知道与哪个if配对。这其实是一个经典的移进-规约冲突问题，即既可以移进也可以规约，bison的解决方案是优先移进。那么此情景下表现出来解决方法是else与其最近的if配对，我编写的测试用例主要验证了这个问题。
 
 看语法分析树的相关部分：(if中间的分析树省略)
 
@@ -320,6 +292,8 @@ bison采用的是LALR()文法，可能会导致悬挂else的问题，即有多�
 ```
 
 可以看到第二部分的else是与第一个if配对的。
+
+其实还有规约-规约冲突问题，即同时对应有两个规则可以规约，bison的解决方案是优先序号在前的规则，但是这样也有风险，最好还是自己修改规则使冲突消失。
 
 #### 思考题
 1.在1.3样例代码中存在左递归文法，为什么 `bison` 可以处理？（提示：不用研究`bison`内部运作机制，在下面知识介绍中有提到 `bison` 的一种属性，请结合课内知识思考）
