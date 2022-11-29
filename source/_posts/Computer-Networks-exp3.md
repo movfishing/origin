@@ -65,7 +65,7 @@ Server:
 
 捕获结果：
 
-![]()
+![](/img/networkexp3/capture.png)
 
 分析结果：
 
@@ -133,9 +133,9 @@ Server:
 
 ![](/img/networkexp3/httprq1.png)
 
-![](/img/networkexp3/http1rq2.png)
+![](/img/networkexp3/httprq2.png)
 
-![](/img/networkexp3/http1rq3.png)
+![](/img/networkexp3/httprq3.png)
 
 可以看到请求的是图片信息。
 
