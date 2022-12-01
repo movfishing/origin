@@ -108,7 +108,7 @@ define dso_local i32 @main() #0 {
 
 运行结果：
 
-![](\img\CPexp3\result1.png)
+![](/img/CPexp3/result1.png)
 
 ### 二、Light IR部分
 
@@ -262,7 +262,7 @@ int main() {
 
 结果展示：
 
-![](\img\CPexp3\result2.png)
+![](/img/CPexp3/result2.png)
 
 ### 问题部分
 
@@ -376,7 +376,7 @@ int visit(AddSubNode& node) override {
 
 对于加减号是先右后左，对于乘除号是先左后右。而添加node时都是一样的，参数1为左子树，参数2为右子树。那么遍历顺序如下图:
 
-![](\img\CPexp3\result3.png)
+![](/img/CPexp3/result3.png)
 
 序列：
 
