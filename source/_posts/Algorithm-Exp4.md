@@ -1,7 +1,7 @@
 ---
 title: Algorithm Exp4
 date: 2022-12-16 19:33:11
-tags: Experiments
+tags: experiments
 categories: Algorithm
 ---
 
