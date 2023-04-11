@@ -17,6 +17,10 @@ categories: CloudComputing
 
 暂时只支持百万的总数独谜题个数，后续完善将同步更新。
 
+--- 4.11 ---
+
+完全改善！可以支持任意数量的谜题啦。
+
 ### 总体框架
 
 ![](/img/CloudComputingLab1/Arch.png)
@@ -25,7 +29,7 @@ categories: CloudComputing
 
 #### 代码片段解读
 
-JobQueue工作队列
+* JobQueue工作队列
 
 ```c
 typedef struct {
@@ -497,6 +501,60 @@ int main()
 
   waitForAllJobsDone();
   return 0;
+}
+```
+
+### AdvancedVersion2.0
+
+其实很简单，但是却拖了很久）
+
+相较于1.0版本，成功支持任意数量的谜题数！(但是暂且设置成为了仅支持1000000个文件输入，总计能支持1000000*INF的谜题数)
+
+代码改动也仅仅只添加了一个条件变量：maxPuzzleCond，当当前已完成与待完成的工作量加起来到达MAX_PUZZLE_NUM时，就会先等待所有任务完成，再初始化工作队列的相关成员，从头开始。
+
+部分更改的代码:
+
+```c++
+void enqueueAJob(char *job)
+{
+  pthread_mutex_lock(&job_queue.mutex);
+  while(job_queue.num_of_total_jobs == MAX_PUZZLE_NUM)
+    pthread_cond_wait(&maxPuzzleCond,&job_queue.mutex);  //new code
+  job_queue.num_of_job_todo++;
+  memcpy(job_queue.jobs[job_queue.tail],job,N*sizeof(job[0]));
+  job_queue.tail++;
+  job_queue.num_of_total_jobs++;
+  pthread_cond_broadcast(&job_queue.inputCond);
+  pthread_mutex_unlock(&job_queue.mutex);
+}
+```
+
+```c++
+void* dequeueAJob(void *arg)
+{
+  while(1){
+    pthread_mutex_lock(&job_queue.mutex);
+    while(job_queue.num_of_job_output<=0 || job_queue.oplist[job_queue.outCount] != 1){
+      pthread_cond_wait(&job_queue.outputCond,&job_queue.mutex);
+    }
+    job_queue.num_of_job_output--;
+    copy_i_to_s(job_queue.ans[job_queue.outCount],job_queue.jobs[job_queue.outCount]);
+    printf("%s\n",job_queue.jobs[job_queue.outCount]);
+    job_queue.outCount++;
+    if(job_queue.num_of_total_jobs == MAX_PUZZLE_NUM && job_queue.outCount == MAX_PUZZLE_NUM){  //new code
+      job_queue.num_of_job_todo = 0;
+      job_queue.tail=0;
+      job_queue.head=0;
+      job_queue.outCount=0;
+      job_queue.num_of_job_output=0;
+      job_queue.num_of_total_jobs=0;
+      for(int i=0;i<MAX_PUZZLE_NUM;i++){
+        job_queue.oplist[i]=0;
+      }
+      pthread_cond_broadcast(&maxPuzzleCond);
+    }
+    pthread_mutex_unlock(&job_queue.mutex);
+  }
 }
 ```
 
